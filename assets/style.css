@@ -41,6 +41,10 @@
   gap: 0.35rem;
 }
 
+.hero-slide {
+  position: relative;
+}
+
 .hero-slide .hero {
   gap: 0.28rem;
 }
@@ -248,15 +252,18 @@
 }
 
 .hero-qr-card {
-  margin-top: 0.45rem;
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+  width: 140px;
   text-align: center;
 }
 
 .hero-qr-card img {
   display: block;
-  width: 120px;
+  width: 100%;
   height: auto;
-  margin: 0 auto 0.3rem;
+  margin: 0 auto 0.25rem;
   padding: 0.35rem;
   background: #fff;
   border-radius: 14px;
@@ -265,11 +272,12 @@
 
 .hero-qr-card p {
   margin: 0;
-  max-width: 30ch;
+  max-width: 100%;
+  line-height: 1.05;
 }
 
 .hero-qr-card code {
-  font-size: 0.9em;
+  font-size: 0.72em;
 }
 
 .presets-slide h2,
