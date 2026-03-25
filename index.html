@@ -435,6 +435,7 @@ pi list</code></pre>
       const startTimerOnce = () => startTalkTimer();
       window.addEventListener("pointerdown", startTimerOnce, { once: true });
       window.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") return;
         if (event.key.toLowerCase() === "t") {
           resetTalkTimer();
           return;
