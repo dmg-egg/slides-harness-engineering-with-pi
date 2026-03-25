@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="assets/style.css" />
   </head>
   <body>
+    <div class="talk-timer" aria-hidden="true">
+      <div class="talk-timer-fill"></div>
+    </div>
     <div class="reveal">
       <div class="slides">
         <section class="hero-slide" data-background-gradient="linear-gradient(135deg, #0f172a, #1e293b)">
@@ -394,6 +397,52 @@ pi list</code></pre>
         transition: "slide",
         plugins: [RevealNotes, RevealHighlight],
       });
+
+      const TALK_DURATION_MS = 10 * 60 * 1000;
+      const WARNING_MS = 8 * 60 * 1000;
+      const timerEl = document.querySelector(".talk-timer");
+      const timerFillEl = document.querySelector(".talk-timer-fill");
+      let timerStart = null;
+      let timerRunning = false;
+
+      function startTalkTimer() {
+        if (timerRunning) return;
+        timerRunning = true;
+        timerStart = performance.now();
+        requestAnimationFrame(updateTalkTimer);
+      }
+
+      function resetTalkTimer() {
+        timerRunning = false;
+        timerStart = null;
+        timerEl.classList.remove("warning", "overtime");
+        timerFillEl.style.height = "0%";
+      }
+
+      function updateTalkTimer(now) {
+        if (!timerRunning || timerStart == null) return;
+
+        const elapsed = now - timerStart;
+        const progress = Math.min(elapsed / TALK_DURATION_MS, 1);
+        timerFillEl.style.height = `${progress * 100}%`;
+
+        timerEl.classList.toggle("warning", elapsed >= WARNING_MS && elapsed < TALK_DURATION_MS);
+        timerEl.classList.toggle("overtime", elapsed >= TALK_DURATION_MS);
+
+        requestAnimationFrame(updateTalkTimer);
+      }
+
+      const startTimerOnce = () => startTalkTimer();
+      window.addEventListener("pointerdown", startTimerOnce, { once: true });
+      window.addEventListener("keydown", (event) => {
+        if (event.key.toLowerCase() === "t") {
+          resetTalkTimer();
+          return;
+        }
+        startTalkTimer();
+      });
+      Reveal.on("slidechanged", startTimerOnce);
+      Reveal.on("fragmentshown", startTimerOnce);
     </script>
   </body>
 </html>

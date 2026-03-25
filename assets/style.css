@@ -5,6 +5,38 @@
   --pi-border: rgba(255, 255, 255, 0.12);
 }
 
+.talk-timer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.08);
+  z-index: 40;
+  pointer-events: none;
+}
+
+.talk-timer-fill {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 0;
+  background: linear-gradient(180deg, #67e8f9, var(--pi-accent));
+  box-shadow: 0 0 12px rgba(34, 211, 238, 0.45);
+  transition: background 180ms ease, box-shadow 180ms ease;
+}
+
+.talk-timer.warning .talk-timer-fill {
+  background: linear-gradient(180deg, #fbbf24, #f97316);
+  box-shadow: 0 0 12px rgba(251, 191, 36, 0.45);
+}
+
+.talk-timer.overtime .talk-timer-fill {
+  background: linear-gradient(180deg, #fb7185, #ef4444);
+  box-shadow: 0 0 12px rgba(239, 68, 68, 0.45);
+}
+
 .reveal {
   font-size: 2.125rem;
 }
