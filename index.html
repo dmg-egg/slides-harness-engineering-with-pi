@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pi Lightning Talk</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/black.css"
+      id="theme"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/monokai.css"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-background-gradient="linear-gradient(135deg, #0f172a, #1e293b)">
+          <div class="hero">
+            <img
+              class="logo"
+              src="https://shittycodingagent.ai/logo.svg"
+              alt="Pi"
+            />
+            <p class="eyebrow">There are many coding agents, but this one is mine.</p>
+            <p class="subtitle"><em>Build your own</em> harness.<br><br>Ready to go.<br>Easy to extend.<br>Knows how to build itself.</p>
+            <p class="small muted hero-links"><span>https://<a href="https://pi.dev/"><strong>pi.dev</strong></a></span><span class="hero-links-separator"><img class="inline-pi-mark" src="https://shittycodingagent.ai/logo.svg" alt="Pi" /></span><span>github.com/<a href="https://github.com/badlogic/pi-mono">badlogic/pi-mono</a></span></p>
+          </div>
+        </section>
+
+        <section>
+          <h2>What is an “agent harness”?</h2>
+          <div class="two-col slide-two-layout">
+            <div>
+              <ul>
+                <li><strong>Deterministic code</strong> + <strong>engineered prompts</strong> around the model</li>
+                <li class="fragment" data-fragment-index="1">The set of abstractions which transforms IO machine into “agent”</li>
+              </ul>
+              <p class="small muted fragment" data-fragment-index="2">In Pi, the <em>default</em> tool belt is <code>read</code>, <code>write</code>, <code>edit</code>, and <code>bash</code>.</p>
+            </div>
+            <div class="diagram-card fragment" data-fragment-index="2">
+              <img src="assets/slide-2-harness.svg" alt="Diagram of an agent harness session loop between environment and LLM" />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2>What is harness engineering?</h2>
+          <div class="two-col">
+            <div>
+              <h3>Definition</h3>
+              <ul>
+                <li>Designing the system <em>around</em> the model</li>
+                <li class="fragment" data-fragment-index="1">Shaping how the agent sees, acts, and fits your workflow</li>
+                <li class="fragment" data-fragment-index="2">More than prompting: tools, UX, memory, constraints, extensions</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="fragment" data-fragment-index="3">Why Pi matters</h3>
+              <ul>
+                <li class="fragment" data-fragment-index="3">Small core of strong defaults</li>
+                <li class="fragment" data-fragment-index="4">Extensions as first-class primitive</li>
+                <li class="fragment" data-fragment-index="4">Install or write the missing piece</li>
+                <li class="fragment" data-fragment-index="5">Learn it all, as you go</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="modes-slide">
+          <h2>Pi’s modes</h2>
+          <p class="muted">Same harness, four different surfaces.</p>
+          <div class="grid-2x2">
+            <div class="card fragment" data-fragment-index="1">
+              <div class="label">Interactive</div>
+              <h3>TUI for humans</h3>
+              <p>Editor, chat history, sessions, commands, model switching.</p>
+              <p class="small muted"><code>pi</code></p>
+            </div>
+            <div class="card fragment" data-fragment-index="2">
+              <div class="label">Print / JSON</div>
+              <h3>CLI for scripts</h3>
+              <p>One-shot output, or stream every event as JSON lines.</p>
+              <p class="small muted"><code>pi -p "..."</code><br /><code>pi --mode json "..."</code></p>
+            </div>
+            <div class="card fragment" data-fragment-index="3">
+              <div class="label">SDK</div>
+              <h3>Embed the agent</h3>
+              <p>Use the same session engine directly from Node/TypeScript.</p>
+              <p class="small muted"><code>createAgentSession()</code></p>
+            </div>
+            <div class="card fragment" data-fragment-index="4">
+              <div class="label">RPC</div>
+              <h3>Process integration</h3>
+              <p>Headless JSONL protocol over stdin/stdout for non-JS IDEs and other apps.</p>
+              <p class="small muted"><code>pi --mode rpc</code></p>
+            </div>
+          </div>
+          <aside class="notes">
+            Pi documents four run surfaces: interactive mode, print/JSON output, RPC mode, and the SDK. The point of this slide is that Pi is not just a terminal app; the same harness can be used by humans, scripts, subprocess integrations, or embedded directly in code.
+          </aside>
+        </section>
+
+        <section class="session-alias-slide">
+          <h2>Compose a Pi for one job</h2>
+          <div class="two-col tighter session-alias-layout">
+            <div>
+              <p class="muted">A custom session can be just a Bash alias.</p>
+              <pre><code class="language-bash">alias researcher='pi \
+  --tools read,bash,grep,find,ls \
+  --extension ~/.pi/agent/extensions/web-search.ts \
+  --extension ~/.pi/agent/extensions/fetch-content.ts \
+  --no-session'</code></pre>
+            </div>
+            <div>
+              <div class="card fragment" data-fragment-index="1">
+                <div class="label">Read-only researcher</div>
+                <h3>Same Pi, different affordances</h3>
+                <ul>
+                  <li>No <code>write</code> or <code>edit</code></li>
+                  <li class="fragment" data-fragment-index="2">Adds research extensions</li>
+                  <li class="fragment" data-fragment-index="3">Easy to launch, easy to share</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            This is one of Pi’s superpowers: you do not need to fork the product to make a different agent. Compose the session you want at launch time. Here the alias creates a read-only research specialist by changing the tool belt and loading extra extensions.
+          </aside>
+        </section>
+
+        <section class="presets-slide">
+          <h2>Aliases are jobs.<sup>*</sup> Presets are states.</h2>
+          <p class="muted">A preset is a named bundle of <strong>model</strong>, <strong>thinking</strong>, <strong>tools</strong>, and <strong>instructions</strong>.</p>
+          <div class="two-col tighter">
+            <div class="card fragment" data-fragment-index="1">
+              <div class="label">What they are</div>
+              <h3>Switchable workflow shapes inside Pi</h3>
+              <ul>
+                <li>Start with <code>--preset plan</code></li>
+                <li class="fragment" data-fragment-index="2">Switch later with <code>/preset</code></li>
+                <li class="fragment" data-fragment-index="3">Define globally or in <code>.pi/presets.json</code></li>
+              </ul>
+            </div>
+            <div class="card fragment" data-fragment-index="4">
+              <div class="label">What they’re for</div>
+              <h3>Plan → implement → review</h3>
+              <ul>
+                <li>Aliases launch a role</li>
+                <li class="fragment" data-fragment-index="5">Presets express a <strong>state transition</strong></li>
+                <li class="fragment" data-fragment-index="6">CLI flags still override when needed</li>
+              </ul>
+            </div>
+          </div>
+          <p class="small muted session-footnote">*Or whatever you want them to be. You know the Shell.</p>
+          <aside class="notes">
+            Define what a preset is before selling it: a named bundle of model, thinking level, tools, and instructions. The key idea is that aliases launch a job, while presets let you move between workflow states like plan, implement, and review without leaving Pi.
+          </aside>
+        </section>
+
+        <section class="model-prompt-slide">
+          <h2>Tiny example extension:<br>Claude-only prompt injection</h2>
+          <div class="two-col tighter model-prompt-layout">
+            <div>
+              <pre><code class="language-ts">export default function (pi) {
+  let claudePrompt;
+
+  pi.on("model_select", async ({ model }) => {
+    claudePrompt = model.id.includes("claude")
+      ? "Seek existing windows for this shootout before blasting new holes, cowboy."
+      : null;
+  });
+
+  pi.on("before_agent_start", async (event) => {
+    if (!claudePrompt) return;
+    return { systemPrompt: `${event.systemPrompt}\n\n${claudePrompt}` };
+  });
+}</code></pre>
+            </div>
+            <div>
+              <div class="card fragment" data-fragment-index="1">
+                <div class="label">What the heck?</div>
+                <h3>Prompt logic can follow the active model</h3>
+                <ul>
+                  <li><code>model_select</code> updates extension state</li>
+                  <li class="fragment" data-fragment-index="2"><code>before_agent_start</code> injects per-turn</li>
+                  <li class="fragment" data-fragment-index="3">No Claude, no Claude-specific system prompt</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            This is intentionally short. The extension watches model changes, stores a Claude-only instruction, and appends it only at turn start. Because the modification happens in before_agent_start, the extra prompt is not permanently baked in; when you switch away, future turns stop receiving it.
+          </aside>
+        </section>
+
+        <section class="scope-slide">
+          <h2>Configuration is part of the software</h2>
+          <p class="muted">Not one global agent. Many deliberately-shaped Pis.</p>
+          <div class="two-col tighter">
+            <div class="card fragment" data-fragment-index="1">
+              <div class="label">Choose the scope</div>
+              <ul>
+                <li><strong>Per-user</strong> defaults</li>
+                <li class="fragment" data-fragment-index="2"><strong>Per-project</strong> files and extensions</li>
+                <li class="fragment" data-fragment-index="3"><strong>Per SDK call</strong> and resource loader</li>
+                <li class="fragment" data-fragment-index="4"><strong>Per RPC exchange</strong></li>
+                <li class="fragment" data-fragment-index="5"><strong>Per alias / preset / command line</strong></li>
+              </ul>
+            </div>
+            <div class="card fragment" data-fragment-index="6">
+              <div class="label">Engineer brain</div>
+              <h3>Dependency injection for the harness</h3>
+              <p>Model choice, tool belt, prompts, auth, and UI are not “the product.” They’re parameters you can bind differently for each repo, team, or workflow.</p>
+            </div>
+          </div>
+          <aside class="notes">
+            This is the close-the-sale slide. The point is not that Pi has many settings. The point is that harness configuration is itself composable software. Different repositories, tasks, or integrations can bind the same engine to different tools, prompts, auth, and UI.
+          </aside>
+        </section>
+
+        <section class="mindset-slide">
+          <h2>Pi breaks the consumer-software mindset</h2>
+          <div class="two-col tighter">
+            <div class="card fragment" data-fragment-index="1">
+              <div class="label">Consumer question</div>
+              <h3>“Does it have my feature?”</h3>
+              <ul>
+                <li>their plan mode</li>
+                <li>their permission UX</li>
+                <li>their auth assumptions</li>
+                <li>their workflow opinions</li>
+              </ul>
+            </div>
+            <div class="card fragment" data-fragment-index="2">
+              <div class="label">Harness question</div>
+              <h3>“How should this work here?”</h3>
+              <ul>
+                <li>compose the tools</li>
+                <li class="fragment" data-fragment-index="3">inject the context</li>
+                <li class="fragment" data-fragment-index="4">build the missing extension</li>
+                <li class="fragment" data-fragment-index="5">make the workflow yours</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="notes">
+            The philosophical move is important. Pi is not trying to convince you to accept a vendor’s worldview. It invites you to treat agent behavior as something you can design, inspect, and change for your environment.
+          </aside>
+        </section>
+
+        <section class="ladder-slide">
+          <h2>A customization ladder</h2>
+          <div class="grid-2x2">
+            <div class="card fragment" data-fragment-index="1">
+              <div class="label">1</div>
+              <h3>Text files</h3>
+              <p><code>AGENTS.md</code>, <code>SYSTEM.md</code>, prompts, settings.</p>
+            </div>
+            <div class="card fragment" data-fragment-index="2">
+              <div class="label">2</div>
+              <h3>Skills</h3>
+              <p>Reusable instructions for focused capabilities and workflows.</p>
+            </div>
+            <div class="card fragment" data-fragment-index="3">
+              <div class="label">3</div>
+              <h3>Extensions</h3>
+              <p>Tools, commands, UI, state, event hooks, custom providers.</p>
+            </div>
+            <div class="card fragment" data-fragment-index="4">
+              <div class="label">4</div>
+              <h3>SDK / RPC</h3>
+              <p>Embed or drive the harness from your own application.</p>
+            </div>
+          </div>
+          <aside class="notes">
+            Not every customization requires writing TypeScript. Pi gives a ladder: start with files, move to skills, then extensions, then full embedding when you need it.
+          </aside>
+        </section>
+
+        <section class="packages-slide">
+          <h2>And yes, you can share it</h2>
+          <div class="two-col tighter packages-layout">
+            <div>
+              <pre><code class="language-bash">pi install npm:@your-org/pi-team-tools
+pi install git:github.com/your-org/pi-workflows
+pi list</code></pre>
+            </div>
+            <div>
+              <div class="card fragment" data-fragment-index="1">
+                <div class="label">Pi packages</div>
+                <h3>Ship prompts, skills, extensions, themes</h3>
+                <p>Team conventions can be versioned, installed, reviewed, and evolved like any other dependency.</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes">
+            This is the practical endpoint: if a workflow matters, don’t keep it in a screenshot or a Slack thread. Package it. Install it. Update it. Review it like software.
+          </aside>
+        </section>
+
+        <section class="compare-slide">
+          <h2>Pi is not trying to be the default for everyone</h2>
+          <div class="two-col tighter">
+            <div class="card fragment" data-fragment-index="1">
+              <div class="label">Many agent tools</div>
+              <h3>Opinionated products for broad audiences</h3>
+              <p>That can be great. Strong defaults, polished workflows, faster onboarding.</p>
+            </div>
+            <div class="card fragment" data-fragment-index="2">
+              <div class="label">Pi’s bet</div>
+              <h3>Specialize the harness to the work</h3>
+              <p>Per repo. Per team. Per model. Per workflow. Less “accept the featureset,” more “shape the agent around the environment.”</p>
+            </div>
+          </div>
+          <aside class="notes">
+            This is not an attack on other harnesses. Many are polished, opinionated products for broad audiences. Pi is making a different bet: that advanced users and teams will want to specialize the harness around their environment instead of conforming to one vendor workflow.
+          </aside>
+        </section>
+
+        <section class="auth-slide">
+          <h2>Setup</h2>
+          <div class="grid-2x2 auth-grid">
+            <div class="card fragment" data-fragment-index="1">
+              <div class="label">Install</div>
+              <h3><code>brew install pi-coding-agent</code></h3>
+              <p>Then run <code>pi</code>.</p>
+            </div>
+            <div class="card fragment" data-fragment-index="2">
+              <div class="label">OAuth</div>
+              <h3><code>/login</code></h3>
+              <p>Sign into Claude, ChatGPT Codex, Copilot, Gemini CLI, or Antigravity from interactive mode.</p>
+            </div>
+            <div class="card fragment" data-fragment-index="3">
+              <div class="label">Credential store</div>
+              <h3><code>~/.pi/agent/auth.json</code></h3>
+              <p>Stores API keys and OAuth tokens. <code>/logout</code> clears them. OAuth tokens auto-refresh.</p>
+            </div>
+            <div class="card fragment" data-fragment-index="4">
+              <div class="label">Other options</div>
+              <h3>Env vars or custom auth path</h3>
+              <p><code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, or <code>AuthStorage.create("/tmp/my-app/auth.json")</code>.</p>
+            </div>
+          </div>
+          <p class="small muted auth-note fragment" data-fragment-index="5">Resolution order: <code>--api-key</code> → <code>auth.json</code> → environment variable.</p>
+          <aside class="notes">
+            End with setup right before links: install Pi, run it, authenticate with /login or API keys, and know where credentials live. Auth is flexible too, including custom auth storage paths for embedded SDK use.
+          </aside>
+        </section>
+
+        <section data-background-gradient="linear-gradient(135deg, #111827, #020617)">
+          <h2>Links</h2>
+          <ul>
+            <li><a href="https://pi.dev">pi.dev</a></li>
+            <li>Github: <a href="https://github.com/badlogic/pi-mono">badlogic/pi-mono</a></li>
+            <li>NPM: <a href="https://www.npmjs.com/package/@mariozechner/pi-coding-agent">@mariozechner/pi-coding-agent</a></li>
+            <li>Install: <code>brew install pi-coding-agent</code></li>
+            <li>LinkedIn: <a href="https://www.linkedin.com/in/dmgregg">/in/dmgregg</a></li>
+            <li>YouTube: <a href="https://www.youtube.com/@indydevdan">@indydevdan</a></li>
+            <li><a href="https://slack.indyhackers.org/">IndyHackers Slack</a>: "DMG"</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/notes/notes.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/plugin/highlight/highlight.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        slideNumber: true,
+        controls: true,
+        progress: true,
+        center: true,
+        transition: "slide",
+        plugins: [RevealNotes, RevealHighlight],
+      });
+    </script>
+  </body>
+</html>

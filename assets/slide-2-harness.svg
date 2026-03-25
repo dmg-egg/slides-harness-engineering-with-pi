@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="100%" height="100%">
+  <defs>
+    <!-- Standard Black Arrowhead -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#000000" />
+    </marker>
+    <!-- Ghost/Secondary Grey Arrowhead -->
+    <marker id="arrow-ghost" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#888888" />
+    </marker>
+  </defs>
+
+  <!-- Environment Boundary (Encompassing the entire harness) -->
+  <rect x="30" y="30" width="740" height="740" rx="40" fill="none" stroke="#000000" stroke-width="3" stroke-dasharray="12,12" />
+  <text x="60" y="80" font-family="sans-serif" font-size="24" font-weight="bold" fill="#000000">Environment</text>
+
+  <!-- LLM Blackbox -->
+  <rect x="300" y="340" width="200" height="120" rx="10" fill="#151515" stroke="#000000" stroke-width="4" />
+  <text x="400" y="412" font-family="sans-serif" font-size="32" font-weight="bold" fill="#FFFFFF" text-anchor="middle">LLM</text>
+
+  <!-- Agent Harness Loop Text -->
+  <text x="640" y="160" font-family="sans-serif" font-size="20" font-weight="bold" fill="#000000" text-anchor="middle">Agent Harness</text>
+  <text x="640" y="185" font-family="sans-serif" font-size="16" fill="#000000" text-anchor="middle">(Session Loop)</text>
+
+  <!-- Harness Loop Segments (Clockwise Flow) -->
+  <!-- Top to Right -->
+  <path d="M 408 200 A 260 200 0 0 1 658 392" fill="none" stroke="#000000" stroke-width="4" marker-end="url(#arrow)" />
+  <!-- Right to Bottom -->
+  <path d="M 660 408 A 260 200 0 0 1 412 598" fill="none" stroke="#000000" stroke-width="4" marker-end="url(#arrow)" />
+  <!-- Bottom to Left -->
+  <path d="M 388 600 A 260 200 0 0 1 142 408" fill="none" stroke="#000000" stroke-width="4" marker-end="url(#arrow)" />
+  <!-- Left to Top -->
+  <path d="M 140 392 A 260 200 0 0 1 392 202" fill="none" stroke="#000000" stroke-width="4" marker-end="url(#arrow)" />
+
+  <!-- Ghost Connections (Indicating exchanges at *each* point on the loop) -->
+  <!-- Left Node Ghost Exchanges -->
+  <line x1="150" y1="385" x2="285" y2="385" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="285" y1="415" x2="150" y2="415" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="130" y1="415" x2="60" y2="415" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="60" y1="385" x2="130" y2="385" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+
+  <!-- Right Node Ghost Exchanges -->
+  <line x1="650" y1="415" x2="515" y2="415" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="515" y1="385" x2="650" y2="385" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="670" y1="385" x2="740" y2="385" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="740" y1="415" x2="670" y2="415" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+
+  <!-- Top Node Ghost Exchanges -->
+  <line x1="415" y1="210" x2="415" y2="325" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="385" y1="325" x2="385" y2="210" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="385" y1="190" x2="385" y2="100" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+  <line x1="415" y1="100" x2="415" y2="190" stroke="#888888" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow-ghost)" />
+
+  <!-- The Nodes (Points on the loop - Now all equal in size) -->
+  <circle cx="140" cy="400" r="12" fill="#FFFFFF" stroke="#000000" stroke-width="4" />
+  <circle cx="660" cy="400" r="12" fill="#FFFFFF" stroke="#000000" stroke-width="4" />
+  <circle cx="400" cy="200" r="12" fill="#FFFFFF" stroke="#000000" stroke-width="4" />
+  <circle cx="400" cy="600" r="12" fill="#FFFFFF" stroke="#000000" stroke-width="4" />
+
+  <!-- Detailed Exchange Lines (Bottom Node) -->
+  <!-- 1. Node to LLM (Input) -->
+  <line x1="370" y1="580" x2="370" y2="475" stroke="#000000" stroke-width="3" marker-end="url(#arrow)" />
+  <text x="355" y="530" font-family="monospace" font-size="16" font-weight="bold" fill="#000000" text-anchor="end">Input String</text>
+
+  <!-- 2. LLM to Node (Output) -->
+  <line x1="430" y1="475" x2="430" y2="580" stroke="#000000" stroke-width="3" marker-end="url(#arrow)" />
+  <text x="445" y="530" font-family="monospace" font-size="16" font-weight="bold" fill="#000000" text-anchor="start">Output String</text>
+
+  <!-- 3. Node to Environment (Action) -->
+  <line x1="370" y1="620" x2="370" y2="725" stroke="#000000" stroke-width="3" marker-end="url(#arrow)" />
+  <text x="355" y="680" font-family="sans-serif" font-size="16" font-weight="bold" fill="#000000" text-anchor="end">Action</text>
+
+  <!-- 4. Environment to Node (Observation) -->
+  <line x1="430" y1="725" x2="430" y2="620" stroke="#000000" stroke-width="3" marker-end="url(#arrow)" />
+  <text x="445" y="680" font-family="sans-serif" font-size="16" font-weight="bold" fill="#000000" text-anchor="start">Observation</text>
+
+</svg>
