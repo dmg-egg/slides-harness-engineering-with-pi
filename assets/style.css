@@ -250,7 +250,8 @@
 .mindset-slide h2,
 .ladder-slide h2,
 .packages-slide h2,
-.compare-slide h2 {
+.compare-slide h2,
+.links-slide h2 {
   margin-bottom: 0.25em;
 }
 
@@ -371,8 +372,34 @@
   padding: 0.7rem 0.8rem;
 }
 
-.packages-layout {
+.packages-layout,
+.links-layout {
   align-items: center;
+}
+
+.links-slide ul {
+  font-size: 0.8em;
+}
+
+.qr-card {
+  text-align: center;
+}
+
+.qr-card img {
+  display: block;
+  width: 220px;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 0.5rem;
+  padding: 0.6rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+.qr-card p {
+  margin: 0;
+  word-break: break-word;
 }
 
 .reveal pre {
