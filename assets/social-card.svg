@@ -1,0 +1,40 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(240 220) rotate(31.4) scale(290 250)">
+      <stop stop-color="#38BDF8" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(960 410) rotate(180) scale(360 280)">
+      <stop stop-color="#1D4ED8" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#1D4ED8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="0" y="0" width="1200" height="630" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="20" stdDeviation="30" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" rx="36" fill="url(#bg)"/>
+  <circle cx="240" cy="220" r="190" fill="url(#glowLeft)"/>
+  <circle cx="960" cy="410" r="260" fill="url(#glowRight)"/>
+
+  <g filter="url(#shadow)">
+    <rect x="96" y="172" width="220" height="220" rx="44" fill="#000000"/>
+    <path fill="#FFFFFF" fill-rule="evenodd" d="M174.586 250.586H271.474V315.143H239.143V347.474H206.812V379.805H174.586V250.586ZM206.812 282.812V315.143H239.143V282.812Z"/>
+    <path fill="#FFFFFF" d="M271.474 315.143H303.805V379.805H271.474Z"/>
+  </g>
+
+  <rect x="390" y="204" width="260" height="6" rx="3" fill="url(#rule)"/>
+
+  <text x="390" y="298" fill="#FFFFFF" font-family="Verdana, Arial, Helvetica, sans-serif" font-size="58" font-weight="800">Harness Engineering</text>
+  <text x="390" y="370" fill="#FFFFFF" font-family="Verdana, Arial, Helvetica, sans-serif" font-size="58" font-weight="800">in Pi</text>
+
+  <text x="390" y="438" fill="#93C5FD" font-family="Verdana, Arial, Helvetica, sans-serif" font-size="24" font-weight="400" font-style="italic">There are many coding agents, but this one is mine.</text>
+</svg>
