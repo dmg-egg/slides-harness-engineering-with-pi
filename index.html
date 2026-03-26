@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pi Lightning Talk</title>
+    <link rel="icon" type="image/svg+xml" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"%3E%3Crect width="800" height="800" rx="120" fill="%23000"/%3E%3Cpath fill="%23fff" fill-rule="evenodd" d="M165.29 165.29H517.36V400H400V517.36H282.65V634.72H165.29ZM282.65 282.65V400H400V282.65Z"/%3E%3Cpath fill="%23fff" d="M517.36 400H634.72V634.72H517.36Z"/%3E%3C/svg%3E' />
 
     <link
       rel="stylesheet"
@@ -30,12 +31,12 @@
           <div class="hero">
             <img
               class="logo"
-              src="https://shittycodingagent.ai/logo.svg"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M165.29 165.29H517.36V400H400V517.36H282.65V634.72H165.29ZM282.65 282.65V400H400V282.65Z'/%3E%3Cpath fill='%23fff' d='M517.36 400H634.72V634.72H517.36Z'/%3E%3C/svg%3E"
               alt="Pi"
             />
             <p class="eyebrow">There are many coding agents, but this one is mine.</p>
             <p class="subtitle fragment" data-fragment-index="1"><em>Build your own</em> harness.<br><br>Ready to go.<br>Built to extend.<br>Knows how to build itself.</p>
-            <p class="small muted hero-links"><span>https://<a href="https://pi.dev/"><strong>pi.dev</strong></a></span><span class="hero-links-separator"><img class="inline-pi-mark" src="https://shittycodingagent.ai/logo.svg" alt="Pi" /></span><span>github.com/<a href="https://github.com/badlogic/pi-mono">badlogic/pi-mono</a></span></p>
+            <p class="small muted hero-links"><span>https://<a href="https://pi.dev/"><strong>pi.dev</strong></a></span><span class="hero-links-separator"><img class="inline-pi-mark" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M165.29 165.29H517.36V400H400V517.36H282.65V634.72H165.29ZM282.65 282.65V400H400V282.65Z'/%3E%3Cpath fill='%23fff' d='M517.36 400H634.72V634.72H517.36Z'/%3E%3C/svg%3E" alt="Pi" /></span><span>github.com/<a href="https://github.com/badlogic/pi-mono">badlogic/pi-mono</a></span></p>
             <div class="hero-qr-card">
               <img src="assets/links-qr.png" alt="QR code for the slide deck URL" />
             </div>
@@ -121,9 +122,9 @@
             <div>
               <p class="muted">A custom session can be just a Bash alias.</p>
               <pre><code class="language-bash">alias researcher='pi \
-  --tools read,bash,grep,find,ls \
-  --extension ~/.pi/agent/extensions/web-search.ts \
+  --tools read,grep,find,ls \
   --extension ~/.pi/agent/extensions/fetch-content.ts \
+  --extension ~/.pi/agent/extensions/web-search.ts \
   --no-session'</code></pre>
             </div>
             <div>
@@ -362,17 +363,20 @@ pi list</code></pre>
         </section>
 
         <section class="links-slide" data-background-gradient="linear-gradient(135deg, #111827, #020617)">
-          <h2>Links</h2>
+          <div class="links-heading">
+            <img class="links-logo" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath fill='%23fff' fill-rule='evenodd' d='M165.29 165.29H517.36V400H400V517.36H282.65V634.72H165.29ZM282.65 282.65V400H400V282.65Z'/%3E%3Cpath fill='%23fff' d='M517.36 400H634.72V634.72H517.36Z'/%3E%3C/svg%3E" alt="Pi" />
+            <h2>Links</h2>
+          </div>
           <div class="two-col tighter links-layout">
             <div>
               <ul>
+                <li><code>brew install pi-coding-agent</code></li>
                 <li><a href="https://pi.dev">pi.dev</a></li>
                 <li>Github: <a href="https://github.com/badlogic/pi-mono">badlogic/pi-mono</a></li>
                 <li>NPM: <a href="https://www.npmjs.com/package/@mariozechner/pi-coding-agent">@mariozechner/pi-coding-agent</a></li>
-                <li>Install: <code>brew install pi-coding-agent</code></li>
                 <li>LinkedIn: <a href="https://www.linkedin.com/in/dmgregg">/in/dmgregg</a></li>
                 <li><a href="https://slack.indyhackers.org/">IndyHackers Slack</a>: "DMG"</li>
-                <li>YouTube: <a href="https://www.youtube.com/@indydevdan">@indydevdan</a></li>
+                <li>Recommended YouTuber: <a href="https://www.youtube.com/@indydevdan">@indydevdan</a></li>
               </ul>
             </div>
             <div class="qr-card">

@@ -446,8 +446,29 @@
   align-items: center;
 }
 
+.links-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.links-heading h2 {
+  margin: 0;
+}
+
+.links-logo {
+  width: 54px;
+  height: 54px;
+  filter: drop-shadow(0 4px 14px rgba(124, 58, 237, 0.35));
+}
+
 .links-slide ul {
-  font-size: 0.8em;
+  font-size: 0.75em;
+}
+
+.links-slide li code {
+  font-size: 0.9em;
 }
 
 .qr-card {
